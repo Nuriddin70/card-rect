@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { API_KEY, API_URL } from "../components/config";
+import Cart from "./Cart";
+import GoodList from "./GoodList";
+import Loader from "./Loader";
 
 export default function Shop() {
   const [goods, setGoods] = useState([]);
@@ -11,15 +14,17 @@ export default function Shop() {
         Authorization: API_KEY,
       },
     })
-    .then((response) => response.json())
-    .then((data) =>{
-      setGoods(data.featured && setGoods(data.featured))
-      setLoading(false)
-    })
+      .then((response) => response.json())
+      .then((data) => {
+        data.featured && setGoods(data.featured);
+        setLoading(false);
+      });
   }, []);
+
   return (
     <div className="content container">
-      <h1>shop</h1>
+      <Cart quantity={goods.length}/>
+      {loading ? <Loader /> : <GoodList goods={goods} />}
     </div>
   );
 }
