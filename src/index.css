@@ -27,3 +27,19 @@ nav{
   gap: 1rem;
 
 }
+
+.cart{
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem;
+  z-index: 5;
+  cursor: pointer;
+}
+
+@media (min-width: 767px) {
+  .cart{
+    top: 5rem;
+    bottom: unset;
+  }
+}

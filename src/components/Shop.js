@@ -7,6 +7,7 @@ import Loader from "./Loader";
 export default function Shop() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     fetch(API_URL, {
@@ -23,7 +24,7 @@ export default function Shop() {
 
   return (
     <div className="content container">
-      <Cart quantity={goods.length}/>
+      <Cart quantity={goods.length} />
       {loading ? <Loader /> : <GoodList goods={goods} />}
     </div>
   );
